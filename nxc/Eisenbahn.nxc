@@ -1,0 +1,33 @@
+
+sub setPower(byte port, int pwr) {
+    if (pwr < -10 || pwr > 100) {
+        SendMessage(MAILBOX2, "out_of_range");
+        return;
+    }
+    int cur = MotorTachoCount(port);
+    pwr = -pwr;
+    int out = pwr - cur;
+    RotateMotor(port, 20, out);
+    SendMessage(MAILBOX2, "done");
+}
+
+task main() {
+    ResetAllTachoCounts(OUT_ABC);
+    string msg;
+    while (true) {
+        ReceiveMessage(MAILBOX1, true, msg);
+        if (strcmp(msg, "") != 0) {
+            ClearLine(LCD_LINE3);
+            TextOut(10, LCD_LINE3, msg);
+            int splitPos = Pos(":", msg);
+            if (splitPos == -1) continue;
+            byte port = StrToNum(SubStr(msg, 0, splitPos));
+            int power = StrToNum(SubStr(msg, splitPos + 1, StrLen(msg) - (splitPos + 1)));
+            setPower(port, power);
+        } else if (ButtonCount(BTNCENTER, true) > 0) {
+            ResetAllTachoCounts(OUT_ABC);
+        }
+        Wait(100);
+    }
+}
+
