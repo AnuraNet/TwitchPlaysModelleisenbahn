@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Eisenbahn</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <string name="pref_title_hostname">Hostname</string>
+    <string name="pref_default_hostname">Eisenbahn</string>
+
+    <string name="pref_title_refresh_enable">Enable auto-refresh states</string>
+
+    <string name="pref_title_refresh">States auto-refresh interval</string>
+    <string-array name="pref_refresh_titles">
+        <item>1 secound</item>
+        <item>2 secound</item>
+        <item>3 secound</item>
+        <item>4 secound</item>
+        <item>5 secound</item>
+    </string-array>
+    <string-array name="pref_refresh_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+</resources>
